@@ -2,13 +2,11 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from persona.models import Persona
 
-
 # Create your views here.
 def bienvenida(request):
     # context = {'msg1':'Valor mensaje 1',
     #           'msg2':'Valor mensaje 2',
     #           'nombre':'Xavier'}
-    #
     #
     # return render(request, 'bienvenida.html', {'msg1':'Valor mensaje 1',
     #            'msg2':'Valor mensaje 2',

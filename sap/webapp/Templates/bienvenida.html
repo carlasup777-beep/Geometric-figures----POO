@@ -32,11 +32,20 @@
 <body>
   <h1>Sistema de administración de Personas</h1> <!-- comentario -->
   <div>
-
+    El numero de personas registradas es: {{no_persona}} <!-- <br>{{persona}} -->
   </div>
-    El numero de personas registradas es: {{no_persona}}<br>{{persona}}
+  <div>
+      <ul>
+        {% for x in persona %}
+          <li>
+            Persona {{x.id}}: {{x.nombre}} {{x.apellido}}
+            <a href="/detalle_persona/{{x.id}}">Detalles</a>
+          </li>
 
-  <!-- Imagen simple decorativa -->
-  <br><img src="https://th.bing.com/th/id/R.c77a9393426a0b75d9bb3800f7168cee?rik=nWvc%2bMCudu172A&pid=ImgRaw&r=0" alt="Decoración celeste" width="100%" height="auto">
+        {% endfor %}
+      </ul>
+    <!-- Imagen simple decorativa -->
+    <br><img src="https://th.bing.com/th/id/R.c77a9393426a0b75d9bb3800f7168cee?rik=nWvc%2bMCudu172A&pid=ImgRaw&r=0" alt="Decoración celeste" style="width:50%; height:auto;">
+  </div>
 </body>
 </html>
