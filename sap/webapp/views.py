@@ -14,6 +14,11 @@ def bienvenida(request):
     # return render(request, 'bienvenida.html', context)
 
     cont= Persona.objects.count()
-    persona = Persona.objects.all() #Read global
-    return render(request, 'bienvenida.html', {'no_persona': cont, 'persona': persona})
+    personas = Persona.objects.all() #Read global
+    return render(request, 'bienvenida.html', {'no_persona': cont, 'persona': personas})
+
+
+
+
+
 
