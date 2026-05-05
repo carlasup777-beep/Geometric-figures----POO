@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Nueva Persona</title>
+    <title>AGG Persona</title>
+    <style>
+        body {
+            background-color: #FFDAB9; /* color cálido (peach) */
+            font-family: Arial, sans-serif;
+            color: #4B2E2E; /* tono marrón cálido */
+            text-align: center;
+        }
+        h1 {
+            color: #B22222; /* rojo cálido */
+        }
+        form {
+            background-color: #FFE4B5; /* beige cálido */
+            border: 3px solid black; /* borde negro */
+            padding: 20px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+        button {
+            background-color: #FF7F50; /* coral */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #CD5C5C; /* rojo más oscuro */
+        }
+        #clock {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #8B0000; /* rojo oscuro */
+        }
+    </style>
 </head>
 <body>
-        <h1>INGRESO DE NUEVA PERSONA: </h1>
+    <h1>INGRESO DE NUEVA PERSONA:</h1>
+    <form method="POST">
+        {{ FormPersona }}
+        <br>
+        <button type="Submit">Guardar Persona</button>
+        {% csrf_token %}
+    </form>
+
+    <!-- Reloj en tiempo real -->
+    <div id="clock"></div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent =
+                `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // inicializa al cargar
+    </script>
 </body>
 </html>

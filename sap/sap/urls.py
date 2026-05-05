@@ -6,7 +6,7 @@ from persona.views import nuevapersona
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('bienvenida/', bienvenida),
+    path('bienvenida/', bienvenida, name='home'),
     path('detalle_persona/<int:id>/', detallePer),
-    path('bienvenida/nuevapersona/', nuevo),
+    path('bienvenida/nuevapersona/', nuevapersona),
 ]
