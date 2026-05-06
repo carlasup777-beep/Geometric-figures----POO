@@ -21,6 +21,12 @@ class Persona(models.Model):
     dom = models.ForeignKey(Domicilio, on_delete=models.SET_NULL, null=True) #Si se borra la tabla o registro, se reemplazara con Null
     # dom = models.ForeignKey(Domicilio, on_delete=models.CASCADE, null=True) #Borra todo el registro
 
+class NewDom(models.Model):
+    dom = models.ForeignKey(Domicilio, on_delete=models.SET_NULL, null=True)
+
     def __str__(self):
         return F'Persona {self.id} {self.nombre} {self.apellido} {self.edad})'
+
+
+
 

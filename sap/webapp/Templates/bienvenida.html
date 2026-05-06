@@ -36,22 +36,66 @@
   </div>
   <div>
       <ul>
-        {% for x in persona %}
-          <li>
-            Persona {{x.id}}: {{x.nombre}} {{x.apellido}}
-            <a href="/detalle_persona/{{x.id}}">Detalles</a>
+<!--        {% for x in persona %}-->
+<!--          <li>-->
+<!--            Persona {{x.id}}: {{x.nombre}} {{x.apellido}}-->
+<!--            <a href="/detalle_persona/{{x.id}}">Detalles</a>-->
+<!--            <form action="{% url 'editarPersona' x.id %}" method="get">-->
+<!--              <button type="submit">Editar</button>-->
+<!--            </form>-->
 
-          </li>
+<!--            <form action="{% url 'eliminarPersona' x.id %}" method="post">-->
+<!--              {% csrf_token %}-->
+<!--              <button type="submit">Eliminar</button>-->
+<!--            </form>-->
+<!--          </li>-->
 
-        {% endfor %}
+<!--        {% endfor %}-->
       </ul>
-  <h2>Crear nueva persona: <a href="nuevapersona/">Agg Personas </a> </h2>
+    <h2>Crear nueva persona: <a href="nuevapersona/">Agg Personas </a> </h2>
+  </div>
+  <div>
+    <li>
+    <table border="4">
+
+      <thead>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Detalle</th>
+          <th>Editar</th>
+          <th>Eliminar</th>
+
+      </thead>
+
+      <tbody>
+            {% for x in persona %}
+
+        <tr>
+          <td>{{x.id}}</td>
+          <td>{{x.nombre}} {{x.apellido}}</td>
+          <td>{{x.email}}</td>
+          <td><a href="/detalle_persona/{{x.id}}">Detalles</a></td>
+
+          <td><form action="{% url 'editarPersona' x.id %}" method="get">
+              <button type="submit">Editar</button></form></td>
+
+          <td><form action="{% url 'eliminarPersona' x.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Eliminar</button></form></td>
+        </tr>
+            {% endfor %}
+      </tbody>
+    </table>
+    </li>
 
     <!-- Imagen simple decorativa -->
     <br><img src="https://th.bing.com/th/id/R.c77a9393426a0b75d9bb3800f7168cee?rik=nWvc%2bMCudu172A&pid=ImgRaw&r=0" alt="Decoración celeste" style="width:50%; height:auto;">
   </div>
 </body>
 </html>
+
+
 
 
 
