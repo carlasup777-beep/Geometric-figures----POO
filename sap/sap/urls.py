@@ -3,10 +3,15 @@ from django.urls import path
 from webapp.views import bienvenida
 from persona.views import detallePer
 from persona.views import nuevapersona
+from persona.views import eliminarPersona
+from persona.views import editarPer
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('bienvenida/', bienvenida, name='home'),
     path('detalle_persona/<int:id>/', detallePer),
     path('bienvenida/nuevapersona/', nuevapersona),
+    path('eliminar/<int:id>/', eliminarPersona, name='eliminarPersona'),
+    path('editar/<int:id>/', editarPer, name='editarPersona'),
+
 ]
