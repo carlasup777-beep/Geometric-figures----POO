@@ -1,101 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Bienvenida</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Adm Personas</title>
   <style>
-    body {
-      background-color: #f0fffb; /* celeste claro */
-      font-family: "Times New Roman", sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      color: #004d66; /* azul oscuro para contraste */
-    }
-    h1 {
-      background-color: #00bcd4; /* celeste más intenso */
-      color: white;
-      padding: 20px;
-      margin: 0;
-    }
-    div {
-      margin-top: 30px;
-      font-size: 18px;
-    }
-    img {
+    /*body { !*background-color: #ADD8E6; !* Celeste claro original *!*!*/
+    /*  !*font-family: Arial, sans-serif;*!}*/
+
+    .container {background-color: white;
       margin-top: 20px;
-      width: 150px;
+      padding: 20px;
       border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);}
+
+    /* Estilo de tabla más parecido a tu original con bordes marcados */
+    table {width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    table, th, td {border: 2px solid #555; /* Borde sólido como tu border="4" */}
+
+    th, td {padding: 10px; text-align: left;}
+
+    th {background-color: #eee;}
+    .center-img {
+      display: block;
+      margin: 20px auto;
+      width: 70vw;
+      height: auto;
     }
   </style>
 </head>
 <body>
-  <h1>Sistema de administración de Personas</h1> <!-- comentario -->
-  <div>
-    El numero de personas registradas es: {{no_persona}} <!-- <br>{{persona}} -->
+
+<div class="container">
+    <h1><p class="text-uppercase text-center fs-3 fst-italic">-- --> Sistema de administración de Personas <-- --</p></h1><hr>
+  <div class="row text-center">
+    <div class="col order-last">
+      Soriano, exporta a Excel
+    </div>
+    <div class="col col-md-8 col-lg-6">
+        <td><h2>Nueva persona:<br><a href="nuevapersona/" class="btn btn-secondary">Agg Personas</a></h2></td>
+    </div>
+    <div class="col order-first">
+      <div class="alert alert-info">
+        El número de personas registradas es: {{no_persona}}
+      </div>
+    </div>
   </div>
-  <div>
-      <ul>
-<!--        {% for x in persona %}-->
-<!--          <li>-->
-<!--            Persona {{x.id}}: {{x.nombre}} {{x.apellido}}-->
-<!--            <a href="/detalle_persona/{{x.id}}">Detalles</a>-->
-<!--            <form action="{% url 'editarPersona' x.id %}" method="get">-->
-<!--              <button type="submit">Editar</button>-->
-<!--            </form>-->
+<hr><!--  Linea encima de la tabla-->
 
-<!--            <form action="{% url 'eliminarPersona' x.id %}" method="post">-->
-<!--              {% csrf_token %}-->
-<!--              <button type="submit">Eliminar</button>-->
-<!--            </form>-->
-<!--          </li>-->
-
-<!--        {% endfor %}-->
-      </ul>
-    <h2>Crear nueva persona: <a href="nuevapersona/">Agg Personas </a> </h2>
-  </div>
-  <div>
-    <li>
-    <table border="4">
-
-      <thead>
-          <th>Id</th>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Detalle</th>
-          <th>Editar</th>
-          <th>Eliminar</th>
-
-      </thead>
-
-      <tbody>
-            {% for x in persona %}
-
-        <tr>
-          <td>{{x.id}}</td>
-          <td>{{x.nombre}} {{x.apellido}}</td>
-          <td>{{x.email}}</td>
-          <td><a href="/detalle_persona/{{x.id}}">Detalles</a></td>
-
-          <td><form action="{% url 'editarPersona' x.id %}" method="get">
-              <button type="submit">Editar</button></form></td>
-
-          <td><form action="{% url 'eliminarPersona' x.id %}" method="post">
-              {% csrf_token %}
-              <button type="submit">Eliminar</button></form></td>
-        </tr>
-            {% endfor %}
-      </tbody>
-    </table>
-    </li>
-
-    <!-- Imagen simple decorativa -->
-    <br><img src="https://th.bing.com/th/id/R.c77a9393426a0b75d9bb3800f7168cee?rik=nWvc%2bMCudu172A&pid=ImgRaw&r=0" alt="Decoración celeste" style="width:50%; height:auto;">
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Detalle</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for x in persona %}
+      <tr>
+        <td>{{x.id}}</td>
+        <td>{{x.nombre}} {{x.apellido}}</td>
+        <td>{{x.email}}</td>
+        <td><a href="/detalle_persona/{{x.id}}" class="btn btn-outline-danger">Detalles</a></td>
+        <td>
+          <form action="{% url 'editarPersona' x.id %}" method="get">
+            <button type="submit" class="btn btn-sm btn-light border">Editar</button>
+          </form>
+        </td>
+        <td>
+          <form action="{% url 'eliminarPersona' x.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <br>
+<!--<img src="https://th.bing.com/th/id/R.c77a9393426a0b75d9bb3800f7168cee?rik=nWvc%2bMCudu172A&pid=ImgRaw&r=0" alt="Decoración celeste" class="d-block mx-auto" style="width: 85%; height: auto;">-->
+</div>
 </body>
 </html>
-
-
-
-
-
